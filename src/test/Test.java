@@ -14,6 +14,7 @@ public class Test {
 
     public static void main(String[] args) {
         Funciones funcion = new Funciones();
+        
 
         Scanner dato = new Scanner(System.in);
 
