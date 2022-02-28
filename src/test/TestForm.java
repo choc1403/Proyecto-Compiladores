@@ -108,6 +108,9 @@ public class TestForm extends javax.swing.JFrame {
         System.out.flush();
         //limpiar();
         mostrar(palabra);
+//        Resultado ver = new Resultado();
+//        ver.setVisible(true);
+        
         
     }//GEN-LAST:event_btnAnalizadorActionPerformed
 
@@ -124,7 +127,8 @@ public class TestForm extends javax.swing.JFrame {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
                     break;
                 }
             }

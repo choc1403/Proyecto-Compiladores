@@ -11,8 +11,10 @@ public class Tokens {
     //Funciones funcion = new Funciones();
     Analizador analiza = new Analizador();
 
-    public void generarTokens(String palabra) {
-
+    
+    
+    public String generarTokens(String palabra){
+        String resultado;
         boolean encontrarRW, encontrarER, encontrarSB;
         boolean encontrarNum, encontrarAsignacion, encontrarFin, encontrarComa;
 
@@ -25,30 +27,38 @@ public class Tokens {
         encontrarComa = analiza.encontrarComa(palabra);
 
         if (encontrarRW) {
-            System.out.print("TIPO DE DATO");
+            resultado = "Tipo de dato";
+            //System.out.print("TIPO DE DATO");
 
         } else if (encontrarER) {         //Encuentra los identificadores
+            resultado = "Identificador";
 
-            System.out.print("IDENTIFICADOR");
+            //System.out.print("IDENTIFICADOR");
 
         } else if (encontrarFin) {
-            System.out.print("FIN");
+            resultado = "Fin";
+            //System.out.print("FIN");
         } else if (encontrarComa) {
-            System.out.print("COMA");
+            resultado = "Coma";
+            //System.out.print("COMA");
         } else if (encontrarSB) {         //Encuentra los simbolos
-            System.out.print("SIMBOLO");
+            resultado = "Simbolo";
+            //System.out.print("SIMBOLO");
 
         } else if (encontrarNum) {        //Encuentra los numeros
-
-            System.out.print("NUMERO");
+            resultado = "Numero";
+            //System.out.print("NUMERO");
 
         } else if (encontrarAsignacion) {
-            System.out.print("ASIGNACION");
+            resultado = "Asignacion";
+            //System.out.print("ASIGNACION");
 
         } /*Escribir otra condicion*/ else {
-            System.out.print("LEXEMA NO ENCONTRADO");
+            resultado = "Lexema no encontrado";
+            //System.out.print("LEXEMA NO ENCONTRADO");
         }
-
+        
+        return resultado;
     }
    
     

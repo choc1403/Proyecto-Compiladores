@@ -2,8 +2,8 @@ package funciones;
 
 import analizador.Analizador;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -167,18 +167,37 @@ public class Funciones {
         int total = cadena.size();
 
         for (int i = 0; i < total; i++) {
-            String tokens = cadena.get(i);
+            String tokens = info(i);
+            System.out.print("" + info(i));
 
-            System.out.print("<" + cadena.get(i));
-            System.out.print(",");
-            token.generarTokens(cadena.get(i));
-            System.out.print(">");
-            System.out.println("");
+            System.out.print(" ");
 
-            if (tokens.equals(";")) {
+            if (tokens.equals("<;,Fin>")) {
                 System.out.println("");
             }
         }
+        System.out.println("");
+    }
+
+    void recorridoEnForm() {
+        int total = cadena.size();
+
+        for (int i = 0; i < total; i++) {
+            String texto = info(i);
+
+            JOptionPane.showMessageDialog(null, texto);
+        }
+    }
+
+    public String info(int i) {
+        String resultado, texto;
+
+        String tokens = cadena.get(i);
+        texto = "<" + cadena.get(i) + "," + token.generarTokens(cadena.get(i)) + ">";
+
+        resultado = texto;
+
+        return resultado;
     }
 
     public void mostrarArreglo() {
@@ -186,5 +205,7 @@ public class Funciones {
         System.out.print("TOKENS GENERADOS");
         System.out.print("-----------------------\n");
         recorridoArreglo();
+        recorridoEnForm();
+
     }
 }
