@@ -207,6 +207,7 @@ public class Funciones {
         boolean encontrarNum, encontrarAsignacion, asignacion, encontrarDecimal;
         boolean encontrarFin, encontrarComa, encontrarComa1, encontrarComaSinFin;
         boolean encontrarSuma, encontrarResta, encontrarMulti, encontrarDivi;
+        boolean encontrarSumaN, encontrarRestaN, encontrarMultiN, encontrarDiviN;
 
         encontrarRW = analiza.encontrarRW(palabra);
         encontrarER = analiza.evaluarER(palabra);
@@ -226,6 +227,11 @@ public class Funciones {
         encontrarResta = regla.resta(palabra);
         encontrarMulti = regla.multiplicacion(palabra);
         encontrarDivi = regla.divicion(palabra);
+        
+        encontrarSumaN = regla.sumaNumero(palabra);
+        encontrarRestaN = regla.restaNumero(palabra);
+        encontrarMultiN = regla.multiplicacionNumero(palabra);
+        encontrarDiviN = regla.divicionNumero(palabra);
 
 //Encuentra las palabras reservadas
         if (encontrarRW) {
@@ -276,6 +282,14 @@ public class Funciones {
         } else if(encontrarMulti){
             multiplicacion(palabra);
         } else if(encontrarDivi){
+            division(palabra);
+        } else if(encontrarSumaN){
+            suma(palabra);
+        } else if(encontrarRestaN){
+            resta(palabra);
+        } else if(encontrarMultiN){
+            multiplicacion(palabra);
+        } else if(encontrarDiviN){
             division(palabra);
         }
         /*Escribir otra condicion*/ else {
