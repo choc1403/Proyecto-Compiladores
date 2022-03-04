@@ -11,12 +11,11 @@ public class Tokens {
     //Funciones funcion = new Funciones();
     Analizador analiza = new Analizador();
 
-    
-    
-    public String generarTokens(String palabra){
+    public String generarTokens(String palabra) {
         String resultado;
         boolean encontrarRW, encontrarER, encontrarSB;
         boolean encontrarNum, encontrarAsignacion, encontrarFin, encontrarComa;
+       
 
         encontrarRW = analiza.encontrarTipoDato(palabra);
         encontrarER = analiza.evaluarER(palabra);
@@ -25,6 +24,7 @@ public class Tokens {
         encontrarAsignacion = analiza.encontrarIgual(palabra);
         encontrarFin = analiza.encontrarFin(palabra);
         encontrarComa = analiza.encontrarComa(palabra);
+        
 
         if (encontrarRW) {
             resultado = "Tipo de dato";
@@ -34,7 +34,6 @@ public class Tokens {
             resultado = "Identificador";
 
             //System.out.print("IDENTIFICADOR");
-
         } else if (encontrarFin) {
             resultado = "Fin";
             //System.out.print("FIN");
@@ -42,7 +41,7 @@ public class Tokens {
             resultado = "Coma";
             //System.out.print("COMA");
         } else if (encontrarSB) {         //Encuentra los simbolos
-            resultado = "Simbolo";
+            resultado = operadores(palabra);
             //System.out.print("SIMBOLO");
 
         } else if (encontrarNum) {        //Encuentra los numeros
@@ -57,10 +56,30 @@ public class Tokens {
             resultado = "Lexema no encontrado";
             //System.out.print("LEXEMA NO ENCONTRADO");
         }
-        
+
         return resultado;
     }
-   
-    
+    String operadores(String palabra){
+        String resultado;
+        String multi = "*";
+        String resta = "-";
+        String divi = "/";
+        String suma = "+";
+        
+        
+        if(multi.equals(palabra)){
+            resultado = "multi";
+        } else if(resta.equals(palabra)){
+            resultado = "Resta";
+        } else if (suma.equals(palabra)){
+            resultado = "suma";
+        } else if (divi.equals(palabra)){
+            resultado = "Division";
+        } else{
+            resultado = "Simbolo";
+        }     
+
+        return resultado;
+    }
 
 }

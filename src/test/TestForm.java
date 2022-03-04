@@ -16,7 +16,6 @@ public class TestForm extends javax.swing.JFrame {
 
     //Declaracion de funciones del analizador
     Funciones funcion = new Funciones();
-    
 
     /**
      * Creates new form TestForm
@@ -28,16 +27,16 @@ public class TestForm extends javax.swing.JFrame {
     public void mostrar(String palabra) {
         funcion.separador(palabra);
         funcion.mostrarArreglo();
-        JOptionPane.showMessageDialog(rootPane, "Hecho"); 
+        JOptionPane.showMessageDialog(rootPane, "Hecho");
     }
-    void limpiar(){
-         try {
+
+    void limpiar() {
+        try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         } catch (Exception e) {
             /*No hacer nada*/
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,10 +107,8 @@ public class TestForm extends javax.swing.JFrame {
         System.out.flush();
         //limpiar();
         mostrar(palabra);
-//        Resultado ver = new Resultado();
-//        ver.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_btnAnalizadorActionPerformed
 
     /**

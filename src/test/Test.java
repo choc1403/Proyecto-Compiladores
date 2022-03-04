@@ -3,6 +3,7 @@ Analizador
  */
 package test;
 
+import analizador.Analizador;
 import funciones.Funciones;
 import java.util.Scanner;
 
@@ -14,17 +15,21 @@ public class Test {
 
     public static void main(String[] args) {
         Funciones funcion = new Funciones();
-        
+        Analizador analiza = new Analizador();
 
         Scanner dato = new Scanner(System.in);
 
         String palabra;
+        
         mensaje();
 
-        palabra = dato.nextLine();
+        //palabra = dato.nextLine();
+        
+        
 
-        funcion.separador(palabra);
-        funcion.mostrarArreglo();
+//        funcion.separador(palabra);
+//        funcion.mostrarArreglo();
+        
     }
 
     static void mensaje() {
@@ -34,5 +39,6 @@ public class Test {
         System.out.println("Por favor digite su cadena de texto");
 
     }
+    
 
 }

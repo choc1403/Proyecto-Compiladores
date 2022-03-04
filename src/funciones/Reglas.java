@@ -53,5 +53,28 @@ public class Reglas {
         Matcher identificador = expresion.matcher(palabra);
         return identificador.matches();
     }
-    
+    public boolean suma(String palabra){
+        String expre = "(([a-zA-Z]+(\\d+)?)(\\s)?[+](\\s)?([a-zA-Z]+(\\d+)?))(;)?";
+        Pattern expresion = Pattern.compile(expre);
+        Matcher identificador = expresion.matcher(palabra);
+        return identificador.matches();
+    }
+    public boolean resta(String palabra){
+        String expre = "(([a-zA-Z]+(\\d+)?)(\\s)?[-](\\s)?([a-zA-Z]+(\\d+)?))(;)?";
+        Pattern expresion = Pattern.compile(expre);
+        Matcher identificador = expresion.matcher(palabra);
+        return identificador.matches();
+    }
+    public boolean multiplicacion(String palabra){
+        String expre = "(([a-zA-Z]+(\\d+)?)(\\s)?[*](\\s)?([a-zA-Z]+(\\d+)?))(;)?";
+        Pattern expresion = Pattern.compile(expre);
+        Matcher identificador = expresion.matcher(palabra);
+        return identificador.matches();
+    }
+    public boolean divicion(String palabra){
+        String expre = "(([a-zA-Z]+(\\d+)?)(\\s)?[/](\\s)?([a-zA-Z]+(\\d+)?))(;)?";
+        Pattern expresion = Pattern.compile(expre);
+        Matcher identificador = expresion.matcher(palabra);
+        return identificador.matches();
+    }
 }

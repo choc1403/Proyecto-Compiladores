@@ -40,7 +40,7 @@ public class Analizador {
 
     public boolean encontrarSimbolo(String palabra) {
         //Simbolos
-        String sb[] = {"+",";" ,"-", "/", "*",","};
+        String sb[] = {"+", ";", "-", "/", "*", ",","."};
         String simbolo;
 
         //Recorrido del arreglo
@@ -53,37 +53,37 @@ public class Analizador {
         }
         return false;
     }
-    
-    public boolean encontrarTipoDato(String palabra){
+
+    public boolean encontrarTipoDato(String palabra) {
         //Tipos de datos
-        String tipoDato[] = {"int","double","boolean","float","string","String","Boolean"};
+        String tipoDato[] = {"int", "double", "boolean", "float", "string", "String", "Boolean"};
         String palabras;
         for (int i = 0; i < tipoDato.length; i++) {
             palabras = tipoDato[i];
-            if(palabras.equals(palabra)){
+            if (palabras.equals(palabra)) {
                 return true;
             }
         }
         return false;
     }
-    
-    public boolean encontrarIgual(String palabra){
+
+    public boolean encontrarIgual(String palabra) {
         String igual = "=";
-        if(igual.equals(palabra)){
+        if (igual.equals(palabra)) {
             return true;
         }
         return false;
     }
-    
-    public boolean encontrarFin(String palabra){
+
+    public boolean encontrarFin(String palabra) {
         String fin = ";";
-        if(fin.equals(palabra)){
+        if (fin.equals(palabra)) {
             return true;
         }
         return false;
     }
-    
-    public boolean encontrarNum(String palabra){
+
+    public boolean encontrarNum(String palabra) {
         //Expresion Regular
         Pattern expresion = Pattern.compile("([0-9]+)([.]\\d+)?");
         //Verifica si la palabra cumple con la expresion regular
@@ -91,12 +91,14 @@ public class Analizador {
         //Resultado como true o como false
         return identificador.matches();
     }
-    
-    public boolean encontrarComa(String palabra){
+
+    public boolean encontrarComa(String palabra) {
         String igual = ",";
-        if(igual.equals(palabra)){
+        if (igual.equals(palabra)) {
             return true;
         }
         return false;
     }
+
+    
 }
