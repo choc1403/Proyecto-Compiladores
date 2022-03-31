@@ -1,6 +1,7 @@
 package funciones;
 
 import analizador.Analizador;
+import analizador.AnalizadorSintactico;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -13,10 +14,12 @@ import javax.swing.JOptionPane;
 public class Funciones {
 
     Analizador analiza = new Analizador();
+    AnalizadorSintactico analizador_reglas = new AnalizadorSintactico();
     Reglas regla = new Reglas();
     Tokens token = new Tokens();
 
     public ArrayList<String> cadena = new ArrayList<String>();
+    public ArrayList<String> cadena_regla = new ArrayList<String>();
 
     public void separador(String palabra) {
         String[] cadenaTexto = palabra.split("[ \\n]");
@@ -300,19 +303,60 @@ public class Funciones {
 
     public void recorridoArreglo() {
         int total = cadena.size();
+        String texto = "";
 
         for (int i = 0; i < total; i++) {
             String tokens = info(i);
 
             System.out.print("" + info(i));
+            //System.out.print(""+ ar(i));
+            texto += ar(i);
 
             System.out.print(" ");
 
             if (tokens.equals("<;,Fin>")) {
-                System.out.println("");
+                System.out.println("");               
             }
+            
+            if (cadena.get(i) == ";"){
+                if(i == (total-1)){                    
+                    String[] fsa = texto.split("<Fin>");
+                    for (int j = 0; j < fsa.length; j++) {
+                        String palabras = fsa[j];
+                        palabras += "<Fin>";
+                        //System.out.println(""+palabras);
+
+
+                        cadena_regla.add(palabras);          
+
+                    }
+                }
+                
+            }else{
+                if(i == (total-1)){
+                    System.out.println("CADENA NO ACEPTADA");
+                }
+                
+            }
+            
+            
+            
         }
         System.out.println("");
+    }
+   
+    
+    public void recorrido_de_reglas(){
+        for (int i = 0; i < cadena_regla.size(); i++) {
+            
+            boolean resultado = analizador_reglas.reglas(cadena_regla.get(i));
+            if (!resultado){
+                System.out.println(""+cadena_regla.get(i)+" CADENA NO ACEPTADA");
+            }else{
+                System.out.println(""+cadena_regla.get(i)+" CADENA ACEPTADA");
+            }
+            
+        }
     }
 
     void recorridoEnForm() {
@@ -330,10 +374,19 @@ public class Funciones {
 
         String tokens = cadena.get(i);
         texto = "<" + cadena.get(i) + "," + token.generarTokens(cadena.get(i)) + ">";
+        
 
         resultado = texto;
 
         return resultado;
+    }
+    public String ar(int i){
+        String resultado,texto;
+        String tokens = cadena.get(i);
+        texto = "<" + token.generarTokens(cadena.get(i)) + ">";
+        resultado = texto;
+        return resultado;
+        
     }
 
     public void mostrarArreglo() {
@@ -341,6 +394,13 @@ public class Funciones {
         System.out.print("TOKENS GENERADOS");
         System.out.print("-----------------------\n");
         recorridoArreglo();
+        System.out.println("");
+        System.out.println("");
+        
+        System.out.print("-----------------------");
+        System.out.print("Reglas GENERADOS");
+        System.out.print("-----------------------\n");
+        recorrido_de_reglas();
         //recorridoEnForm();
 
     }

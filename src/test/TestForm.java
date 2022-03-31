@@ -104,6 +104,7 @@ public class TestForm extends javax.swing.JFrame {
         //Declaracion de variables
         String palabra = txtCodigo.getText();
         funcion.cadena.clear();
+        funcion.cadena_regla.clear();
         System.out.flush();
         //limpiar();
         mostrar(palabra);
