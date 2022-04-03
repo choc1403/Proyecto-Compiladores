@@ -6,6 +6,7 @@
 package test;
 
 import funciones.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,18 +17,34 @@ public class TestForm extends javax.swing.JFrame {
 
     //Declaracion de funciones del analizador
     Funciones funcion = new Funciones();
+    public ArrayList<String> textp = new ArrayList<String>();
 
     /**
      * Creates new form TestForm
      */
     public TestForm() {
-        initComponents();
-    }
+        initComponents();      
+        
+    }    
+   
 
     public void mostrar(String palabra) {
-        funcion.separador(palabra);
+        
+        String[] cadenaTexto = palabra.split("[\\n]");
+        int totalLineas =0;
+        for (int i = 0; i < cadenaTexto.length; i++) {
+            String palabras = cadenaTexto[i];
+            //System.out.println(""+palabras);
+            funcion.separador(i+1,palabras);
+            totalLineas++;
+            
+        }        
+        
+                
+        
         funcion.mostrarArreglo();
         JOptionPane.showMessageDialog(rootPane, "Hecho");
+        
     }
 
     void limpiar() {
@@ -51,6 +68,7 @@ public class TestForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtCodigo = new javax.swing.JTextArea();
+        txtLinea = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -68,14 +86,19 @@ public class TestForm extends javax.swing.JFrame {
         txtCodigo.setRows(5);
         jScrollPane2.setViewportView(txtCodigo);
 
+        txtLinea.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtLinea)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(240, 240, 240)))
@@ -91,7 +114,8 @@ public class TestForm extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAnalizador)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLinea))
                 .addGap(25, 25, 25))
         );
 
@@ -107,6 +131,7 @@ public class TestForm extends javax.swing.JFrame {
         funcion.cadena_regla.clear();
         System.out.flush();
         //limpiar();
+        
         mostrar(palabra);
 
 
@@ -154,5 +179,6 @@ public class TestForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea txtCodigo;
+    private javax.swing.JLabel txtLinea;
     // End of variables declaration//GEN-END:variables
 }

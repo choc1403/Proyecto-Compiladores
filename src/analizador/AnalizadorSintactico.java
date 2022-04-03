@@ -13,7 +13,10 @@ public class AnalizadorSintactico {
     public boolean reglas(String texto){
         String reglas_sintacticas[] = {
             "<Tipo de dato><Identificador><Fin>",
-            "<Tipo de dato><Identificador><Asignacion><Numero><Fin>"
+            "<Tipo de dato><Identificador><Asignacion><Numero><Fin>",
+            "<Identificador><Asignacion><Numero><Fin>",
+            "<Identificador><Asignacion><Identificador><suma><Numero><Fin>",
+            "<Tipo de dato><Identificador><Asignacion><Identificador><suma><Numero><Fin>"
         };
         String palabras;
         
