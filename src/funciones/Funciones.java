@@ -318,10 +318,6 @@ public class Funciones {
         } /*Escribir otra condicion*/ else {
             mensajeError();
         }
-        
-        
-        
-
     }
     
     
@@ -356,7 +352,11 @@ public class Funciones {
                 texto += ar(i);
                 //System.out.print("" + info(i));
             }
-            String[] fsa = texto.split("<Fin>");
+            
+
+            if (cadena.get(i) == ";") {
+                if (i == (total - 1)) {
+                    String[] fsa = texto.split("<Fin>");
                     for (int j = 0; j < fsa.length; j++) {
                         String palabras = fsa[j];
                         palabras += "<Fin>";
@@ -365,10 +365,6 @@ public class Funciones {
                         cadena_regla.add(palabras);
 
                     }
-
-            if (cadena.get(i) == ";") {
-                if (i == (total - 1)) {
-                    
                 }
 
             } else {
