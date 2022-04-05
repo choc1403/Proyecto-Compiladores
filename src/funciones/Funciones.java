@@ -24,7 +24,7 @@ public class Funciones {
 
     public ArrayList<String> cadena = new ArrayList<String>();
     public ArrayList<String> cadena_regla = new ArrayList<String>();
-
+    ArrayList<String> prueba = new ArrayList<String>();
     
 
     public void separador(int contador,String palabra) {
@@ -219,7 +219,13 @@ public class Funciones {
 
     public void evaluar(int contador, String palabra) {     
         contar++;
-        System.out.println("La lina "+ contador+") fue analizada "+contar+" veces \n");
+        if(contador >1 ){
+            
+            //System.out.println("La lina "+ contador+") fue analizada "+contar+" veces \n");            
+        }else{            
+            //System.out.println("La lina "+ contador+") fue analizada "+contar+" veces \n");
+            
+        }
         
         boolean encontrarRW, encontrarER, encontrarSB, encontrarFinalizado;
         boolean encontrarNum, encontrarAsignacion, asignacion, encontrarDecimal;
@@ -312,8 +318,13 @@ public class Funciones {
         } /*Escribir otra condicion*/ else {
             mensajeError();
         }
+        
+        
+        
 
     }
+    
+    
 
     public void recorridoArreglo() {
         int total = cadena.size();
@@ -323,10 +334,10 @@ public class Funciones {
         for (int i = 0; i < total; i++) {
             String tokens = info(i);
 
-            System.out.print("" + info(i));
+            
             //System.out.print(""+ ar(i));
-            //textoGeneral += info(i) + " ";
-            texto += ar(i);
+            
+            
 
             System.out.print(" ");
 
@@ -335,10 +346,17 @@ public class Funciones {
                 //textoGeneral += "\n";
 
             }
-
-            if (cadena.get(i) == ";") {
-                if (i == (total - 1)) {
-                    String[] fsa = texto.split("<Fin>");
+            
+            if(info(i).equals("<\n, >")){
+                System.out.println("");
+                textoGeneral += "\n";
+                texto += "\n";
+            }else{
+                textoGeneral += info(i);
+                texto += ar(i);
+                //System.out.print("" + info(i));
+            }
+            String[] fsa = texto.split("<Fin>");
                     for (int j = 0; j < fsa.length; j++) {
                         String palabras = fsa[j];
                         palabras += "<Fin>";
@@ -347,6 +365,10 @@ public class Funciones {
                         cadena_regla.add(palabras);
 
                     }
+
+            if (cadena.get(i) == ";") {
+                if (i == (total - 1)) {
+                    
                 }
 
             } else {
@@ -358,9 +380,9 @@ public class Funciones {
 
         }
 
-        System.out.println("");
-        //textoGeneral += "\n";
+        //System.out.println("");        
         //System.out.println(""+textoGeneral);
+        System.out.println(""+texto);
     }
 
     public void recorrido_de_reglas() {
@@ -382,7 +404,9 @@ public class Funciones {
         String resultado, texto;
 
         String tokens = cadena.get(i);
-        texto = "<" + cadena.get(i) + "," + token.generarTokens(cadena.get(i)) + ">";
+        
+        texto = "<" + cadena.get(i) + "," + token.generarTokens(cadena.get(i)) + ">";        
+       
 
         resultado = texto;
 
@@ -403,15 +427,13 @@ public class Funciones {
         System.out.print("-----------------------");
         System.out.print("TOKENS GENERADOS");
         System.out.print("-----------------------\n");
-        recorridoArreglo();
-        System.out.println("");
-        System.out.println("");
+        recorridoArreglo();        
         
-        System.out.print("-----------------------");
-        System.out.print("Reglas GENERADOS");
-        System.out.print("-----------------------\n");
-        recorrido_de_reglas();
-        contar = 0;
+//        System.out.print("-----------------------");
+//        System.out.print("Reglas GENERADOS");
+//        System.out.print("-----------------------\n");
+//        recorrido_de_reglas();
+//        contar = 0;
         
          
 

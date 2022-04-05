@@ -52,7 +52,10 @@ public class Tokens {
             resultado = "Asignacion";
             //System.out.print("ASIGNACION");
 
-        } /*Escribir otra condicion*/ else {
+        } else if (palabra.equals("\n")){
+            resultado = " ";
+        }
+                /*Escribir otra condicion*/ else {
             resultado = "Lexema no encontrado";
             //System.out.print("LEXEMA NO ENCONTRADO");
         }

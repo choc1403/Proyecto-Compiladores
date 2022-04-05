@@ -37,7 +37,7 @@ public class TestForm extends javax.swing.JFrame {
             //System.out.println(""+palabras);
             funcion.separador(i+1,palabras);
             totalLineas++;
-            
+            funcion.cadena.add("\n");
         }        
         
                 
