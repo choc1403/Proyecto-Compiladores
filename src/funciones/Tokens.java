@@ -27,7 +27,7 @@ public class Tokens {
         
 
         if (encontrarRW) {
-            resultado = "Tipo de dato";
+            resultado = "Tipo_de_dato";
             //System.out.print("TIPO DE DATO");
 
         } else if (encontrarER) {         //Encuentra los identificadores

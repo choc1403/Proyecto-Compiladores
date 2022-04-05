@@ -3,6 +3,8 @@ package funciones;
 import analizador.Analizador;
 import analizador.AnalizadorSintactico;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 //import test.*;
@@ -13,46 +15,42 @@ import javax.swing.JOptionPane;
  */
 public class Funciones {
 
-   
-
     Analizador analiza = new Analizador();
     AnalizadorSintactico analizador_reglas = new AnalizadorSintactico();
     Reglas regla = new Reglas();
     Tokens token = new Tokens();
     int contar = 0;
-    
 
     public ArrayList<String> cadena = new ArrayList<String>();
     public ArrayList<String> cadena_regla = new ArrayList<String>();
     ArrayList<String> prueba = new ArrayList<String>();
-    
 
-    public void separador(int contador,String palabra) {
+    public void separador(int contador, String palabra) {
         String[] cadenaTexto = palabra.split("[ ]");
-        
+
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);            
+            evaluar(contador, palabras);
         }
 
     }
-    
-    void finaliza(int contador,String palabra) {
+
+    void finaliza(int contador, String palabra) {
         String[] cadenaTexto = palabra.split("[;]");
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
-            evaluar(contador,";");
+            evaluar(contador, palabras);
+            evaluar(contador, ";");
         }
     }
 
-    void coma(int contador,String palabra) {
+    void coma(int contador, String palabra) {
         String[] cadenaTexto = palabra.split("[,]");
         char[] cadenaSeparada = palabra.toCharArray();
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
+            evaluar(contador, palabras);
             break;
 
         }
@@ -61,24 +59,24 @@ public class Funciones {
             char caracter = cadenaSeparada[i];
             String cadena = Character.toString(caracter);
             if (cadena.equals(",")) {
-                evaluar(contador,",");
+                evaluar(contador, ",");
                 break;
             }
         }
 
         for (int i = 1; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
+            evaluar(contador, palabras);
         }
     }
 
-    void igual(int contador,String palabra) {
+    void igual(int contador, String palabra) {
         String[] cadenaTexto = palabra.split("[=]");
         char[] cadenaSeparada = palabra.toCharArray();
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
+            evaluar(contador, palabras);
             break;
 
         }
@@ -87,26 +85,26 @@ public class Funciones {
             char caracter = cadenaSeparada[i];
             String cadena = Character.toString(caracter);
             if (cadena.equals("=")) {
-                evaluar(contador,"=");
+                evaluar(contador, "=");
                 break;
             }
         }
 
         for (int i = 1; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
+            evaluar(contador, palabras);
 
         }
 
     }
 
-    void suma(int contador,String palabra) {
+    void suma(int contador, String palabra) {
         String[] cadenaTexto = palabra.split("[+]");
         char[] cadenaSeparada = palabra.toCharArray();
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
+            evaluar(contador, palabras);
             break;
 
         }
@@ -115,25 +113,25 @@ public class Funciones {
             char caracter = cadenaSeparada[i];
             String cadena = Character.toString(caracter);
             if (cadena.equals("+")) {
-                evaluar(contador,"+");
+                evaluar(contador, "+");
                 break;
             }
         }
 
         for (int i = 1; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
+            evaluar(contador, palabras);
 
         }
     }
 
-    void resta(int contador,String palabra) {
+    void resta(int contador, String palabra) {
         String[] cadenaTexto = palabra.split("[-]");
         char[] cadenaSeparada = palabra.toCharArray();
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
+            evaluar(contador, palabras);
             break;
 
         }
@@ -142,25 +140,25 @@ public class Funciones {
             char caracter = cadenaSeparada[i];
             String cadena = Character.toString(caracter);
             if (cadena.equals("-")) {
-                evaluar(contador,"-");
+                evaluar(contador, "-");
                 break;
             }
         }
 
         for (int i = 1; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
+            evaluar(contador, palabras);
 
         }
     }
 
-    void multiplicacion(int contador,String palabra) {
+    void multiplicacion(int contador, String palabra) {
         String[] cadenaTexto = palabra.split("[*]");
         char[] cadenaSeparada = palabra.toCharArray();
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
+            evaluar(contador, palabras);
             break;
 
         }
@@ -169,25 +167,25 @@ public class Funciones {
             char caracter = cadenaSeparada[i];
             String cadena = Character.toString(caracter);
             if (cadena.equals("*")) {
-                evaluar(contador,"*");
+                evaluar(contador, "*");
                 break;
             }
         }
 
         for (int i = 1; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
+            evaluar(contador, palabras);
 
         }
     }
 
-    void division(int contador,String palabra) {
+    void division(int contador, String palabra) {
         String[] cadenaTexto = palabra.split("[/]");
         char[] cadenaSeparada = palabra.toCharArray();
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
+            evaluar(contador, palabras);
             break;
 
         }
@@ -196,18 +194,17 @@ public class Funciones {
             char caracter = cadenaSeparada[i];
             String cadena = Character.toString(caracter);
             if (cadena.equals("/")) {
-                evaluar(contador,"/");
+                evaluar(contador, "/");
                 break;
             }
         }
 
         for (int i = 1; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador,palabras);
+            evaluar(contador, palabras);
 
         }
     }
-
 
     void mensajeError() {
         System.out.println("\nLOS DATOS INGRESADOS NO CUMPLEN CON LAS"
@@ -217,16 +214,16 @@ public class Funciones {
         System.out.println("SIMBOLO\n");
     }
 
-    public void evaluar(int contador, String palabra) {     
+    public void evaluar(int contador, String palabra) {
         contar++;
-        if(contador >1 ){
-            
+        if (contador > 1) {
+
             //System.out.println("La lina "+ contador+") fue analizada "+contar+" veces \n");            
-        }else{            
+        } else {
             //System.out.println("La lina "+ contador+") fue analizada "+contar+" veces \n");
-            
+
         }
-        
+
         boolean encontrarRW, encontrarER, encontrarSB, encontrarFinalizado;
         boolean encontrarNum, encontrarAsignacion, asignacion, encontrarDecimal;
         boolean encontrarFin, encontrarComa, encontrarComa1, encontrarComaSinFin;
@@ -279,48 +276,46 @@ public class Funciones {
             //System.out.println("Numero: " + encontrarNum);
         } else if (encontrarFinalizado) {
             //Encuentrar los ; al final            
-            finaliza(contador,palabra);
+            finaliza(contador, palabra);
 
         } else if (encontrarAsignacion) {
             cadena.add(palabra);
 
             //System.out.println("Asignacion: " + encontrarAsignacion);
         } else if (asignacion) {
-            igual(contador,palabra);
+            igual(contador, palabra);
         } else if (encontrarDecimal) {
-            finaliza(contador,palabra);
+            finaliza(contador, palabra);
         } else if (encontrarFin) {
             cadena.add(palabra);
 
             //System.out.println("Fin: " + encontrarFin);
         } else if (encontrarComa) {
-            coma(contador,palabra);
+            coma(contador, palabra);
         } else if (encontrarComa1) {
-            coma(contador,palabra);
+            coma(contador, palabra);
         } else if (encontrarComaSinFin) {
-            coma(contador,palabra);
+            coma(contador, palabra);
         } else if (encontrarSuma) {
-            suma(contador,palabra);
+            suma(contador, palabra);
         } else if (encontrarResta) {
-            resta(contador,palabra);
+            resta(contador, palabra);
         } else if (encontrarMulti) {
-            multiplicacion(contador,palabra);
+            multiplicacion(contador, palabra);
         } else if (encontrarDivi) {
-            division(contador,palabra);
+            division(contador, palabra);
         } else if (encontrarSumaN) {
-            suma(contador,palabra);
+            suma(contador, palabra);
         } else if (encontrarRestaN) {
-            resta(contador,palabra);
-        } else if (encontrarMultiN) {          
-            multiplicacion(contador,palabra);
+            resta(contador, palabra);
+        } else if (encontrarMultiN) {
+            multiplicacion(contador, palabra);
         } else if (encontrarDiviN) {
-            division(contador,palabra);
+            division(contador, palabra);
         } /*Escribir otra condicion*/ else {
             mensajeError();
         }
     }
-    
-    
 
     public void recorridoArreglo() {
         int total = cadena.size();
@@ -330,79 +325,71 @@ public class Funciones {
         for (int i = 0; i < total; i++) {
             String tokens = info(i);
 
-            
             //System.out.print(""+ ar(i));
             
-            
-
-            System.out.print(" ");
-
+/*
             if (tokens.equals("<;,Fin>")) {
                 System.out.println("");
                 //textoGeneral += "\n";
 
-            }
-            
-            if(info(i).equals("<\n, >")){
-                System.out.println("");
+            }*/
+
+            if (info(i).equals("<\n, >")) {                
                 textoGeneral += "\n";
                 texto += "\n";
-            }else{
+            } else {
                 textoGeneral += info(i);
                 texto += ar(i);
                 //System.out.print("" + info(i));
             }
-            
-
-            if (cadena.get(i) == ";") {
-                if (i == (total - 1)) {
-                    String[] fsa = texto.split("<Fin>");
-                    for (int j = 0; j < fsa.length; j++) {
-                        String palabras = fsa[j];
-                        palabras += "<Fin>";
-                        //System.out.println(""+palabras);
-
-                        cadena_regla.add(palabras);
-
-                    }
-                }
-
-            } else {
-                if (i == (total - 1)) {
-                    System.out.println("CADENA NO ACEPTADA");
-                }
-
-            }
 
         }
 
-        //System.out.println("");        
-        //System.out.println(""+textoGeneral);
-        System.out.println(""+texto);
+       
+        System.out.println(textoGeneral);
+        String[] det = texto.split("[\\n]");
+        System.out.println("");
+
+        for (int i = 0; i < det.length; i++) {
+            String detalle = det[i];
+            Pattern expresion = Pattern.compile("([<][a-zA-Z_]+[>])+(<Fin>)$");
+            Matcher identificador = expresion.matcher(detalle);
+            boolean resultado = identificador.matches();
+            if (resultado){
+                cadena_regla.add("\n");
+                cadena_regla.add(detalle);
+            }else{
+                cadena_regla.add("\n");
+                cadena_regla.add(detalle);
+            }
+
+        }
     }
 
     public void recorrido_de_reglas() {
         for (int i = 0; i < cadena_regla.size(); i++) {
 
-            boolean resultado = analizador_reglas.reglas(cadena_regla.get(i));
-            if (!resultado) {
-                System.out.println("" + cadena_regla.get(i) + " CADENA NO ACEPTADA");
+            if (cadena_regla.get(i).equals("\n")) {
+                System.out.println("");
+
             } else {
-                System.out.println("" + cadena_regla.get(i) + " CADENA ACEPTADA");
+                boolean resultado = analizador_reglas.reglas(cadena_regla.get(i));
+                if (!resultado) {
+                    System.out.println("" + cadena_regla.get(i) + " CADENA NO ACEPTADA");
+                } else {
+                    System.out.println("" + cadena_regla.get(i) + " CADENA ACEPTADA");
+                }
             }
 
         }
     }
 
-    
-
     public String info(int i) {
         String resultado, texto;
 
         String tokens = cadena.get(i);
-        
-        texto = "<" + cadena.get(i) + "," + token.generarTokens(cadena.get(i)) + ">";        
-       
+
+        texto = "<" + cadena.get(i) + "," + token.generarTokens(cadena.get(i)) + ">";
 
         resultado = texto;
 
@@ -419,21 +406,17 @@ public class Funciones {
     }
 
     public void mostrarArreglo() {
-        
+
         System.out.print("-----------------------");
         System.out.print("TOKENS GENERADOS");
         System.out.print("-----------------------\n");
-        recorridoArreglo();        
-        
-//        System.out.print("-----------------------");
-//        System.out.print("Reglas GENERADOS");
-//        System.out.print("-----------------------\n");
-//        recorrido_de_reglas();
-//        contar = 0;
-        
-         
+        recorridoArreglo();
+        System.out.println("\n\n");
 
-       
-
+        System.out.print("-----------------------");
+        System.out.print("Reglas GENERADOS");
+        System.out.print("-----------------------\n");
+        recorrido_de_reglas();
+////        contar = 0;
     }
 }
