@@ -40,7 +40,15 @@ public class Analizador {
 
     public boolean encontrarSimbolo(String palabra) {
         //Simbolos
-        String sb[] = {"+", ";", "-", "/", "*", ",","."};
+        String sb[] = {
+            "+",";", 
+            "-","/", 
+            "*", ",",
+            ".", "(",
+            ")", "{",
+            "}", "[",
+            "]"                
+        };
         String simbolo;
 
         //Recorrido del arreglo
@@ -98,6 +106,24 @@ public class Analizador {
             return true;
         }
         return false;
+    }
+    
+    public boolean cadena_texto(String palabra){
+        Pattern expresion = Pattern.compile("([\"]((\\w+(\\s+)?(\\w+)?)+)[\"])");
+        Matcher identificador = expresion.matcher(palabra);
+        return identificador.matches();
+    }
+    
+    public boolean caracter(String palabra){
+        Pattern expresion = Pattern.compile("(')\\w(')");
+        Matcher identificador = expresion.matcher(palabra);
+        return identificador.matches();
+    }
+    public boolean parentesis(String palabra){        
+        Pattern expresion = Pattern.compile("([(])((\\w+((\\s)?[+*/]?(\\s)?(-?)\\w+)?))([)])");
+        Matcher identificador = expresion.matcher(palabra);
+        return identificador.matches();
+        
     }
 
     

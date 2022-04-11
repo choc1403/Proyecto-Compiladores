@@ -35,7 +35,7 @@ public class TestForm extends javax.swing.JFrame {
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
             //System.out.println(""+palabras);
-            funcion.separador(i+1,palabras);
+            funcion.separador(palabras);
             totalLineas++;
             funcion.cadena.add("\n");
         }        
@@ -47,13 +47,7 @@ public class TestForm extends javax.swing.JFrame {
         
     }
 
-    void limpiar() {
-        try {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (Exception e) {
-            /*No hacer nada*/
-        }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,8 +123,9 @@ public class TestForm extends javax.swing.JFrame {
         String palabra = txtCodigo.getText();
         funcion.cadena.clear();
         funcion.cadena_regla.clear();
+        
         System.out.flush();
-        //limpiar();
+        
         
         mostrar(palabra);
 

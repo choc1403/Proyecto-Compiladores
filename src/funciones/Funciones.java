@@ -23,34 +23,34 @@ public class Funciones {
 
     public ArrayList<String> cadena = new ArrayList<String>();
     public ArrayList<String> cadena_regla = new ArrayList<String>();
-    ArrayList<String> prueba = new ArrayList<String>();
+   
 
-    public void separador(int contador, String palabra) {
+    public void separador(String palabra) {
         String[] cadenaTexto = palabra.split("[ ]");
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
         }
 
     }
 
-    void finaliza(int contador, String palabra) {
+    void finaliza(String palabra) {
         String[] cadenaTexto = palabra.split("[;]");
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
-            evaluar(contador, ";");
+            evaluar(palabras);
+            evaluar(";");
         }
     }
 
-    void coma(int contador, String palabra) {
+    void coma(String palabra) {
         String[] cadenaTexto = palabra.split("[,]");
         char[] cadenaSeparada = palabra.toCharArray();
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
             break;
 
         }
@@ -59,24 +59,24 @@ public class Funciones {
             char caracter = cadenaSeparada[i];
             String cadena = Character.toString(caracter);
             if (cadena.equals(",")) {
-                evaluar(contador, ",");
+                evaluar(",");
                 break;
             }
         }
 
         for (int i = 1; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
         }
     }
 
-    void igual(int contador, String palabra) {
+    void igual(String palabra) {
         String[] cadenaTexto = palabra.split("[=]");
         char[] cadenaSeparada = palabra.toCharArray();
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
             break;
 
         }
@@ -85,26 +85,26 @@ public class Funciones {
             char caracter = cadenaSeparada[i];
             String cadena = Character.toString(caracter);
             if (cadena.equals("=")) {
-                evaluar(contador, "=");
+                evaluar("=");
                 break;
             }
         }
 
         for (int i = 1; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
 
         }
 
     }
 
-    void suma(int contador, String palabra) {
+    void suma(String palabra) {
         String[] cadenaTexto = palabra.split("[+]");
         char[] cadenaSeparada = palabra.toCharArray();
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
             break;
 
         }
@@ -113,25 +113,25 @@ public class Funciones {
             char caracter = cadenaSeparada[i];
             String cadena = Character.toString(caracter);
             if (cadena.equals("+")) {
-                evaluar(contador, "+");
+                evaluar("+");
                 break;
             }
         }
 
         for (int i = 1; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
 
         }
     }
 
-    void resta(int contador, String palabra) {
+    void resta(String palabra) {
         String[] cadenaTexto = palabra.split("[-]");
         char[] cadenaSeparada = palabra.toCharArray();
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
             break;
 
         }
@@ -140,25 +140,25 @@ public class Funciones {
             char caracter = cadenaSeparada[i];
             String cadena = Character.toString(caracter);
             if (cadena.equals("-")) {
-                evaluar(contador, "-");
+                evaluar("-");
                 break;
             }
         }
 
         for (int i = 1; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
 
         }
     }
 
-    void multiplicacion(int contador, String palabra) {
+    void multiplicacion(String palabra) {
         String[] cadenaTexto = palabra.split("[*]");
         char[] cadenaSeparada = palabra.toCharArray();
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
             break;
 
         }
@@ -167,25 +167,25 @@ public class Funciones {
             char caracter = cadenaSeparada[i];
             String cadena = Character.toString(caracter);
             if (cadena.equals("*")) {
-                evaluar(contador, "*");
+                evaluar("*");
                 break;
             }
         }
 
         for (int i = 1; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
 
         }
     }
 
-    void division(int contador, String palabra) {
+    void division(String palabra) {
         String[] cadenaTexto = palabra.split("[/]");
         char[] cadenaSeparada = palabra.toCharArray();
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
             break;
 
         }
@@ -194,16 +194,28 @@ public class Funciones {
             char caracter = cadenaSeparada[i];
             String cadena = Character.toString(caracter);
             if (cadena.equals("/")) {
-                evaluar(contador, "/");
+                evaluar("/");
                 break;
             }
         }
 
         for (int i = 1; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(contador, palabras);
+            evaluar(palabras);
 
         }
+    }
+    
+    void parente(String palabra){
+        char[] cadenaSeparada = palabra.toCharArray();
+        int length = cadenaSeparada.length;
+        
+        for (int i = 0; i < length; i++) {
+            char paren = cadenaSeparada[i];
+            String pa = Character.toString(paren);
+            evaluar(pa);
+        }
+        
     }
 
     void mensajeError() {
@@ -214,21 +226,14 @@ public class Funciones {
         System.out.println("SIMBOLO\n");
     }
 
-    public void evaluar(int contador, String palabra) {
-        contar++;
-        if (contador > 1) {
-
-            //System.out.println("La lina "+ contador+") fue analizada "+contar+" veces \n");            
-        } else {
-            //System.out.println("La lina "+ contador+") fue analizada "+contar+" veces \n");
-
-        }
-
+    public void evaluar(String palabra) {
         boolean encontrarRW, encontrarER, encontrarSB, encontrarFinalizado;
         boolean encontrarNum, encontrarAsignacion, asignacion, encontrarDecimal;
         boolean encontrarFin, encontrarComa, encontrarComa1, encontrarComaSinFin;
         boolean encontrarSuma, encontrarResta, encontrarMulti, encontrarDivi;
         boolean encontrarSumaN, encontrarRestaN, encontrarMultiN, encontrarDiviN;
+        boolean encontrarCadena, encontrarCaracter;
+        boolean encontrarCad, encontrarCar, encontrarParentesis, encontrarPa;
 
         encontrarRW = analiza.encontrarRW(palabra);
         encontrarER = analiza.evaluarER(palabra);
@@ -237,6 +242,10 @@ public class Funciones {
 
         encontrarAsignacion = analiza.encontrarIgual(palabra);
         encontrarFin = analiza.encontrarFin(palabra);
+        
+        encontrarCadena = analiza.cadena_texto(palabra);
+        encontrarCaracter = analiza.caracter(palabra);
+        encontrarPa = analiza.parentesis(palabra);
 
         encontrarFinalizado = regla.finalizacion(palabra);
         asignacion = regla.asignar(palabra);
@@ -253,6 +262,11 @@ public class Funciones {
         encontrarRestaN = regla.restaNumero(palabra);
         encontrarMultiN = regla.multiplicacionNumero(palabra);
         encontrarDiviN = regla.divicionNumero(palabra);
+        
+        encontrarCad = regla.cadena_texto(palabra);
+        encontrarCar = regla.caracter(palabra);
+        encontrarParentesis = regla.parentesis(palabra);
+        
 
 //Encuentra las palabras reservadas
         if (encontrarRW) {
@@ -276,43 +290,58 @@ public class Funciones {
             //System.out.println("Numero: " + encontrarNum);
         } else if (encontrarFinalizado) {
             //Encuentrar los ; al final            
-            finaliza(contador, palabra);
+            finaliza(palabra);
 
         } else if (encontrarAsignacion) {
             cadena.add(palabra);
 
             //System.out.println("Asignacion: " + encontrarAsignacion);
         } else if (asignacion) {
-            igual(contador, palabra);
+            igual(palabra);
         } else if (encontrarDecimal) {
-            finaliza(contador, palabra);
+            finaliza(palabra);
         } else if (encontrarFin) {
             cadena.add(palabra);
 
             //System.out.println("Fin: " + encontrarFin);
         } else if (encontrarComa) {
-            coma(contador, palabra);
+            coma(palabra);
         } else if (encontrarComa1) {
-            coma(contador, palabra);
+            coma(palabra);
         } else if (encontrarComaSinFin) {
-            coma(contador, palabra);
+            coma(palabra);
         } else if (encontrarSuma) {
-            suma(contador, palabra);
+            suma(palabra);
         } else if (encontrarResta) {
-            resta(contador, palabra);
+            resta(palabra);
         } else if (encontrarMulti) {
-            multiplicacion(contador, palabra);
+            multiplicacion(palabra);
         } else if (encontrarDivi) {
-            division(contador, palabra);
+            division(palabra);
         } else if (encontrarSumaN) {
-            suma(contador, palabra);
+            suma(palabra);
         } else if (encontrarRestaN) {
-            resta(contador, palabra);
+            resta(palabra);
         } else if (encontrarMultiN) {
-            multiplicacion(contador, palabra);
+            multiplicacion(palabra);
         } else if (encontrarDiviN) {
-            division(contador, palabra);
-        } /*Escribir otra condicion*/ else {
+            division(palabra);
+        } else if (encontrarCadena){
+            cadena.add(palabra);
+        } else if(encontrarCaracter){
+            cadena.add(palabra);
+        } else if(encontrarCad){
+            finaliza(palabra);
+        } else if(encontrarCar){
+            finaliza(palabra);
+        } else if(encontrarParentesis){
+            parente(palabra);
+        } else if(encontrarPa){
+            cadena.add(palabra);
+        }
+        //Escribir otra condicion 
+        else {
+            System.out.println(""+palabra);
             mensajeError();
         }
     }
@@ -324,15 +353,6 @@ public class Funciones {
 
         for (int i = 0; i < total; i++) {
             String tokens = info(i);
-
-            //System.out.print(""+ ar(i));
-            
-/*
-            if (tokens.equals("<;,Fin>")) {
-                System.out.println("");
-                //textoGeneral += "\n";
-
-            }*/
 
             if (info(i).equals("<\n, >")) {                
                 textoGeneral += "\n";
@@ -404,8 +424,21 @@ public class Funciones {
         return resultado;
 
     }
+    public final static void limpiar() {
+        try {
+            final String os = System.getProperty("os.name");
+            if (os.contains("Windows")){
+                Runtime.getRuntime().exec("clear ");
+            }else{
+                Runtime.getRuntime().exec("clear");
+            }
+        } catch (Exception e) {
+            /*No hacer nada*/
+        }
+    }
 
     public void mostrarArreglo() {
+        limpiar();
 
         System.out.print("-----------------------");
         System.out.print("TOKENS GENERADOS");

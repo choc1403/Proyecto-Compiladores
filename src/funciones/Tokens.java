@@ -15,7 +15,7 @@ public class Tokens {
         String resultado;
         boolean encontrarRW, encontrarER, encontrarSB;
         boolean encontrarNum, encontrarAsignacion, encontrarFin, encontrarComa;
-       
+        boolean encontrarCadena, encontrarCaracter;
 
         encontrarRW = analiza.encontrarTipoDato(palabra);
         encontrarER = analiza.evaluarER(palabra);
@@ -24,6 +24,8 @@ public class Tokens {
         encontrarAsignacion = analiza.encontrarIgual(palabra);
         encontrarFin = analiza.encontrarFin(palabra);
         encontrarComa = analiza.encontrarComa(palabra);
+        encontrarCadena = analiza.cadena_texto(palabra);
+        encontrarCaracter = analiza.caracter(palabra);
         
 
         if (encontrarRW) {
@@ -54,8 +56,11 @@ public class Tokens {
 
         } else if (palabra.equals("\n")){
             resultado = " ";
-        }
-                /*Escribir otra condicion*/ else {
+        } else if (encontrarCadena){
+            resultado = "Cadena";
+        } else if(encontrarCaracter){
+            resultado = "Caracter";
+        } /*Escribir otra condicion*/ else {
             resultado = "Lexema no encontrado";
             //System.out.print("LEXEMA NO ENCONTRADO");
         }
@@ -68,21 +73,28 @@ public class Tokens {
         String resta = "-";
         String divi = "/";
         String suma = "+";
-        
+        String parentesis_izquierdo = "(";
+        String parentesis_derecho = ")";
         
         if(multi.equals(palabra)){
-            resultado = "multi";
+            resultado = "Multiplicacion";
         } else if(resta.equals(palabra)){
             resultado = "Resta";
         } else if (suma.equals(palabra)){
-            resultado = "suma";
+            resultado = "Suma";
         } else if (divi.equals(palabra)){
             resultado = "Division";
-        } else{
+        } else if(parentesis_izquierdo.equals(palabra)){
+            resultado = "Parentesis_izquierdo";
+        } else if(parentesis_derecho.equals(palabra)){
+            resultado = "Parentesis_derecho";
+        }
+        else{
             resultado = "Simbolo";
         }     
 
         return resultado;
     }
+    
 
 }

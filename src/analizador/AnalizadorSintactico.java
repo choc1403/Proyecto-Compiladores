@@ -15,8 +15,8 @@ public class AnalizadorSintactico {
             "<Tipo de dato><Identificador><Fin>",
             "<Tipo de dato><Identificador><Asignacion><Numero><Fin>",
             "<Identificador><Asignacion><Numero><Fin>",
-            "<Identificador><Asignacion><Identificador><suma><Numero><Fin>",
-            "<Tipo de dato><Identificador><Asignacion><Identificador><suma><Numero><Fin>"
+            "<Identificador><Asignacion><Identificador><Suma><Numero><Fin>",
+            "<Tipo de dato><Identificador><Asignacion><Identificador><Suma><Numero><Fin>"
         };
         String palabras;
         
