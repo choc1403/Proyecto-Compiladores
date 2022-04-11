@@ -23,7 +23,6 @@ public class Funciones {
 
     public ArrayList<String> cadena = new ArrayList<String>();
     public ArrayList<String> cadena_regla = new ArrayList<String>();
-   
 
     public void separador(String palabra) {
         String[] cadenaTexto = palabra.split("[ ]");
@@ -205,17 +204,51 @@ public class Funciones {
 
         }
     }
-    
-    void parente(String palabra){
+
+    void parente(String palabra) {
         char[] cadenaSeparada = palabra.toCharArray();
         int length = cadenaSeparada.length;
-        
+        String paal = "";
         for (int i = 0; i < length; i++) {
             char paren = cadenaSeparada[i];
+
             String pa = Character.toString(paren);
-            evaluar(pa);
+            //evaluar(pa);
+            if (pa.equals("(")) {
+                evaluar(pa);
+            } else {
+                paal += paren;
+
+            }
+
         }
         
+
+        char[] ca = paal.toCharArray();
+        String al = "";
+        String paFin = " ";
+        String fin = " ";
+
+        for (int i = 0; i < ca.length; i++) {
+
+            char xd = ca[i];
+            if (ca[i] == ')') {
+                paFin = ")";
+            } else if (ca[i] == ';') {
+                fin = ";";
+            } else {
+                al += ca[i];
+            }
+
+        }
+        
+
+        evaluar(al);
+        evaluar(paFin);
+        if (fin != " ") {
+            evaluar(fin);
+        }
+
     }
 
     void mensajeError() {
@@ -242,7 +275,7 @@ public class Funciones {
 
         encontrarAsignacion = analiza.encontrarIgual(palabra);
         encontrarFin = analiza.encontrarFin(palabra);
-        
+
         encontrarCadena = analiza.cadena_texto(palabra);
         encontrarCaracter = analiza.caracter(palabra);
         encontrarPa = analiza.parentesis(palabra);
@@ -262,11 +295,10 @@ public class Funciones {
         encontrarRestaN = regla.restaNumero(palabra);
         encontrarMultiN = regla.multiplicacionNumero(palabra);
         encontrarDiviN = regla.divicionNumero(palabra);
-        
+
         encontrarCad = regla.cadena_texto(palabra);
         encontrarCar = regla.caracter(palabra);
         encontrarParentesis = regla.parentesis(palabra);
-        
 
 //Encuentra las palabras reservadas
         if (encontrarRW) {
@@ -326,22 +358,21 @@ public class Funciones {
             multiplicacion(palabra);
         } else if (encontrarDiviN) {
             division(palabra);
-        } else if (encontrarCadena){
+        } else if (encontrarCadena) {
             cadena.add(palabra);
-        } else if(encontrarCaracter){
+        } else if (encontrarCaracter) {
             cadena.add(palabra);
-        } else if(encontrarCad){
+        } else if (encontrarCad) {
             finaliza(palabra);
-        } else if(encontrarCar){
+        } else if (encontrarCar) {
             finaliza(palabra);
-        } else if(encontrarParentesis){
+        } else if (encontrarParentesis) {
             parente(palabra);
-        } else if(encontrarPa){
+        } else if (encontrarPa) {
             cadena.add(palabra);
-        }
-        //Escribir otra condicion 
+        } //Escribir otra condicion 
         else {
-            System.out.println(""+palabra);
+            System.out.println("" + palabra);
             mensajeError();
         }
     }
@@ -354,7 +385,7 @@ public class Funciones {
         for (int i = 0; i < total; i++) {
             String tokens = info(i);
 
-            if (info(i).equals("<\n, >")) {                
+            if (info(i).equals("<\n, >")) {
                 textoGeneral += "\n";
                 texto += "\n";
             } else {
@@ -365,7 +396,6 @@ public class Funciones {
 
         }
 
-       
         System.out.println(textoGeneral);
         String[] det = texto.split("[\\n]");
         System.out.println("");
@@ -375,10 +405,10 @@ public class Funciones {
             Pattern expresion = Pattern.compile("([<][a-zA-Z_]+[>])+(<Fin>)$");
             Matcher identificador = expresion.matcher(detalle);
             boolean resultado = identificador.matches();
-            if (resultado){
+            if (resultado) {
                 cadena_regla.add("\n");
                 cadena_regla.add(detalle);
-            }else{
+            } else {
                 cadena_regla.add("\n");
                 cadena_regla.add(detalle);
             }
@@ -424,12 +454,13 @@ public class Funciones {
         return resultado;
 
     }
+
     public final static void limpiar() {
         try {
             final String os = System.getProperty("os.name");
-            if (os.contains("Windows")){
+            if (os.contains("Windows")) {
                 Runtime.getRuntime().exec("clear ");
-            }else{
+            } else {
                 Runtime.getRuntime().exec("clear");
             }
         } catch (Exception e) {
@@ -450,6 +481,6 @@ public class Funciones {
         System.out.print("Reglas GENERADOS");
         System.out.print("-----------------------\n");
         recorrido_de_reglas();
-////        contar = 0;
+
     }
 }

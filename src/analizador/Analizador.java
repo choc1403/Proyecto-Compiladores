@@ -93,7 +93,7 @@ public class Analizador {
 
     public boolean encontrarNum(String palabra) {
         //Expresion Regular
-        Pattern expresion = Pattern.compile("([0-9]+)([.]\\d+)?");
+        Pattern expresion = Pattern.compile("(-)?([0-9]+)([.]\\d+)?");
         //Verifica si la palabra cumple con la expresion regular
         Matcher identificador = expresion.matcher(palabra);
         //Resultado como true o como false
@@ -109,7 +109,7 @@ public class Analizador {
     }
     
     public boolean cadena_texto(String palabra){
-        Pattern expresion = Pattern.compile("([\"]((\\w+(\\s+)?(\\w+)?)+)[\"])");
+        Pattern expresion = Pattern.compile("([\"]((\\w+((-)?\\d+([.]))?(\\s+)?(\\w+)?)+)[\"])");
         Matcher identificador = expresion.matcher(palabra);
         return identificador.matches();
     }
@@ -120,7 +120,7 @@ public class Analizador {
         return identificador.matches();
     }
     public boolean parentesis(String palabra){        
-        Pattern expresion = Pattern.compile("([(])((\\w+((\\s)?[+*/]?(\\s)?(-?)\\w+)?))([)])");
+        Pattern expresion = Pattern.compile("([(])((\\w?)+(((-)?(\\d+)([.])?)+)?([+*/]?(-)?)+\\w+)([)])");
         Matcher identificador = expresion.matcher(palabra);
         return identificador.matches();
         

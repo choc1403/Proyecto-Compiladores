@@ -114,7 +114,7 @@ public class Reglas {
         return identificador.matches();
     }
     public boolean parentesis(String palabra){
-        String expre = "([(])?((\\w+((\\s)?[+*/]?(\\s)?(-?)\\w+)?))?([)])(;)?";
+        String expre = "([(])?((\\w?)+(((-)?(\\d+)([.])?)+)?([+*/]?(-)?)+\\w+)?([)])?(;)?";
         Pattern expresion = Pattern.compile(expre);
         Matcher identificador = expresion.matcher(palabra);
         return identificador.matches();
