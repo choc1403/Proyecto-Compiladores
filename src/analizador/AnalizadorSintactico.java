@@ -38,7 +38,13 @@ public class AnalizadorSintactico {
             "<Identificador><Asignacion><Parentesis_izquierdo><Identificador><Multiplicacion><Identificador><Parentesis_derecho><Fin>",
             "<Identificador><Asignacion><Parentesis_izquierdo><Identificador><Division><Identificador><Parentesis_derecho><Fin>",
             "<Tipo_de_dato><Identificador><Asignacion><Cadena><Fin>",
-            "<Tipo_de_dato><Identificador><Asignacion><Caracter><Fin>"
+            "<Tipo_de_dato><Identificador><Asignacion><Caracter><Fin>",
+            /*SE AGREGO EN EL PARCIAL*/
+            "<Tipo_de_dato><Identificador><Coma><Identificador><Fin>",
+            "<Tipo_de_dato><Identificador><Asignacion><Numero><Coma><Identificador><Fin>",
+            "<Tipo_de_dato><Identificador><Coma><Identificador><Asignacion><Numero><Fin>",
+            "<Condicion><Parentesis_izquierdo><Identificador><Asignacion><Identificador><Parentesis_derecho>",
+            "<Condicion><Parentesis_izquierdo><Identificador><Asignacion><Identificador><Parentesis_derecho><or><Condicion><Parentesis_izquierdo><Identificador><Asignacion><Numero><Parentesis_derecho>"
         };
         String palabras;
         

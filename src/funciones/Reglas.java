@@ -53,6 +53,14 @@ public class Reglas {
         Matcher identificador = expresion.matcher(palabra);
         return identificador.matches();
     }
+    
+    public boolean separarAsig(String palabra){        
+        String expre = "(\\w+\\s?[=]?\\s?[,]?\\s?)+(;)?";
+        Pattern expresion = Pattern.compile(expre);
+        Matcher identificador = expresion.matcher(palabra);
+        return identificador.matches();
+    }
+    
     public boolean suma(String palabra){
         String expre = "(([a-zA-Z]+(\\d+)?)(\\s)?[+](\\s)?([a-zA-Z]+(\\d+)?))(;)?";
         Pattern expresion = Pattern.compile(expre);
@@ -107,16 +115,22 @@ public class Reglas {
         Matcher identificador = expresion.matcher(palabra);
         return identificador.matches();
     }
+    /*
     public boolean cadena_texto(String palabra){
         String expre = "([\"]((\\w+(\\s+)?(\\w+)?)+)[\"])(;)?";
         Pattern expresion = Pattern.compile(expre);
         Matcher identificador = expresion.matcher(palabra);
         return identificador.matches();
-    }
-    public boolean parentesis(String palabra){
-        String expre = "([(])?((\\w?)+(((-)?(\\d+)([.])?)+)?([+*/]?(-)?)+\\w+)?([)])?(;)?";
-        Pattern expresion = Pattern.compile(expre);
-        Matcher identificador = expresion.matcher(palabra);
-        return identificador.matches();
-    }
+      //(["]((\w+(\s+)?(\w+)?)+)["])(;)?
+    }*/
+    
+    
+//    public boolean parentesis(String palabra){
+//        String expre = "([(])?((\\w?)+(((-)?(\\d+)([.])?)+)?([+*/]?(-)?)+\\w+)?([)])?(;)?";
+//        Pattern expresion = Pattern.compile(expre);
+//        Matcher identificador = expresion.matcher(palabra);
+//        return identificador.matches();
+//        //([(])((\w?)+(((-)?(\d+)([.])?)+)?([+*/]?(-)?)+\w+)([)])
+//    }
+    
 }

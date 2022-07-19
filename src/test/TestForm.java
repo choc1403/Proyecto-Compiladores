@@ -31,13 +31,17 @@ public class TestForm extends javax.swing.JFrame {
     public void mostrar(String palabra) {
         
         String[] cadenaTexto = palabra.split("[\\n]");
+        
         int totalLineas =0;
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
             //System.out.println(""+palabras);
+            
+           
             funcion.separador(palabras);
             totalLineas++;
             funcion.cadena.add("\n");
+            
         }        
         
                 
@@ -121,8 +125,10 @@ public class TestForm extends javax.swing.JFrame {
 
         //Declaracion de variables
         String palabra = txtCodigo.getText();
+        
         funcion.cadena.clear();
         funcion.cadena_regla.clear();
+        funcion.limpiar();
         
         System.out.flush();
         

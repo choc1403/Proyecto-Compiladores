@@ -23,16 +23,35 @@ public class Funciones {
 
     public ArrayList<String> cadena = new ArrayList<String>();
     public ArrayList<String> cadena_regla = new ArrayList<String>();
+    
+    //public boolean salto()
 
     public void separador(String palabra) {
-        String[] cadenaTexto = palabra.split("[ ]");
+        String[] cadenaTexto = palabra.split(" ");
+        
 
         for (int i = 0; i < cadenaTexto.length; i++) {
             String palabras = cadenaTexto[i];
-            evaluar(palabras);
+            System.out.println(" --> "+palabras);
+            
+            Pattern expresion = Pattern.compile("(\\n)?(\\s)?");
+            Matcher identificador = expresion.matcher(palabras);
+            boolean re = identificador.matches();
+            
+            if (re){
+                //System.out.println(" listo");
+                contar = contar +1;
+                System.out.println("LINEA "+contar);
+            }else{
+                evaluar(palabras);
+                
+            }
+            
         }
 
     }
+    
+    
 
     void finaliza(String palabra) {
         String[] cadenaTexto = palabra.split("[;]");
@@ -267,6 +286,7 @@ public class Funciones {
         boolean encontrarSumaN, encontrarRestaN, encontrarMultiN, encontrarDiviN;
         boolean encontrarCadena, encontrarCaracter;
         boolean encontrarCad, encontrarCar, encontrarParentesis, encontrarPa;
+        boolean encontrarAs;
 
         encontrarRW = analiza.encontrarRW(palabra);
         encontrarER = analiza.evaluarER(palabra);
@@ -276,7 +296,7 @@ public class Funciones {
         encontrarAsignacion = analiza.encontrarIgual(palabra);
         encontrarFin = analiza.encontrarFin(palabra);
 
-        encontrarCadena = analiza.cadena_texto(palabra);
+        //encontrarCadena = analiza.cadena_texto(palabra);
         encontrarCaracter = analiza.caracter(palabra);
         encontrarPa = analiza.parentesis(palabra);
 
@@ -296,9 +316,10 @@ public class Funciones {
         encontrarMultiN = regla.multiplicacionNumero(palabra);
         encontrarDiviN = regla.divicionNumero(palabra);
 
-        encontrarCad = regla.cadena_texto(palabra);
+        //encontrarCad = regla.cadena_texto(palabra);
         encontrarCar = regla.caracter(palabra);
-        encontrarParentesis = regla.parentesis(palabra);
+        //encontrarParentesis = regla.parentesis(palabra);
+        encontrarAs = regla.separarAsig(palabra);
 
 //Encuentra las palabras reservadas
         if (encontrarRW) {
@@ -358,20 +379,26 @@ public class Funciones {
             multiplicacion(palabra);
         } else if (encontrarDiviN) {
             division(palabra);
-        } else if (encontrarCadena) {
+        } /*else if (encontrarCadena) {
             cadena.add(palabra);
-        } else if (encontrarCaracter) {
+        } */else if (encontrarCaracter) {
             cadena.add(palabra);
-        } else if (encontrarCad) {
+        } /*else if (encontrarCad) {
             finaliza(palabra);
-        } else if (encontrarCar) {
+        } */else if (encontrarCar) {
             finaliza(palabra);
-        } else if (encontrarParentesis) {
+        }/* else if (encontrarParentesis) {
             parente(palabra);
-        } else if (encontrarPa) {
+        } */else if (encontrarPa) {
             cadena.add(palabra);
-        } //Escribir otra condicion 
+        } else if((palabra.equals(" "))||(palabra.equals("\\t")) || (palabra.equals("\\n") )){
+            System.out.println("");
+        } else if(encontrarAs){
+            coma(palabra);
+        } 
+//Escribir otra condicion 
         else {
+            
             System.out.println("" + palabra);
             mensajeError();
         }
@@ -425,9 +452,9 @@ public class Funciones {
             } else {
                 boolean resultado = analizador_reglas.reglas(cadena_regla.get(i));
                 if (!resultado) {
-                    System.out.println("" + cadena_regla.get(i) + " CADENA NO ACEPTADA");
+                    System.out.println("" + cadena_regla.get(i) + " \nCADENA NO ACEPTADA\n");
                 } else {
-                    System.out.println("" + cadena_regla.get(i) + " CADENA ACEPTADA");
+                    System.out.println("" + cadena_regla.get(i) + " \nCADENA ACEPTADA\n");
                 }
             }
 
@@ -455,22 +482,13 @@ public class Funciones {
 
     }
 
-    public final static void limpiar() {
-        try {
-            final String os = System.getProperty("os.name");
-            if (os.contains("Windows")) {
-                Runtime.getRuntime().exec("clear ");
-            } else {
-                Runtime.getRuntime().exec("clear");
-            }
-        } catch (Exception e) {
-            /*No hacer nada*/
+    public void limpiar() {
+        for (int i = 0; i < 50; i++) {
+            System.out.println("");
         }
     }
 
     public void mostrarArreglo() {
-        limpiar();
-
         System.out.print("-----------------------");
         System.out.print("TOKENS GENERADOS");
         System.out.print("-----------------------\n");
@@ -481,6 +499,7 @@ public class Funciones {
         System.out.print("Reglas GENERADOS");
         System.out.print("-----------------------\n");
         recorrido_de_reglas();
+        
 
     }
 }

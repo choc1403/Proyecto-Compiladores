@@ -16,6 +16,7 @@ public class Tokens {
         boolean encontrarRW, encontrarER, encontrarSB;
         boolean encontrarNum, encontrarAsignacion, encontrarFin, encontrarComa;
         boolean encontrarCadena, encontrarCaracter;
+        boolean encontrarCondi;
 
         encontrarRW = analiza.encontrarTipoDato(palabra);
         encontrarER = analiza.evaluarER(palabra);
@@ -24,14 +25,17 @@ public class Tokens {
         encontrarAsignacion = analiza.encontrarIgual(palabra);
         encontrarFin = analiza.encontrarFin(palabra);
         encontrarComa = analiza.encontrarComa(palabra);
-        encontrarCadena = analiza.cadena_texto(palabra);
+        //encontrarCadena = analiza.cadena_texto(palabra);
         encontrarCaracter = analiza.caracter(palabra);
+        encontrarCondi = analiza.condicion(palabra);
         
 
         if (encontrarRW) {
             resultado = "Tipo_de_dato";
             //System.out.print("TIPO DE DATO");
 
+        }else if(encontrarCondi){
+            resultado = "Condicion";
         } else if (encontrarER) {         //Encuentra los identificadores
             resultado = "Identificador";
 
@@ -56,9 +60,9 @@ public class Tokens {
 
         } else if (palabra.equals("\n")){
             resultado = " ";
-        } else if (encontrarCadena){
+        } /*else if (encontrarCadena){
             resultado = "Cadena";
-        } else if(encontrarCaracter){
+        } */else if(encontrarCaracter){
             resultado = "Caracter";
         } /*Escribir otra condicion*/ else {
             resultado = "Lexema no encontrado";
@@ -75,6 +79,9 @@ public class Tokens {
         String suma = "+";
         String parentesis_izquierdo = "(";
         String parentesis_derecho = ")";
+        String or = "|";
+        String and = "&";
+        
         
         if(multi.equals(palabra)){
             resultado = "Multiplicacion";
@@ -88,6 +95,10 @@ public class Tokens {
             resultado = "Parentesis_izquierdo";
         } else if(parentesis_derecho.equals(palabra)){
             resultado = "Parentesis_derecho";
+        } else if(or.equals(palabra)){
+            resultado = "or";
+        } else if(and.equals(palabra)){
+            resultado = "and";
         }
         else{
             resultado = "Simbolo";

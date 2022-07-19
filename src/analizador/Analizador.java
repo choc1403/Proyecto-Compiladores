@@ -15,7 +15,7 @@ public class Analizador {
     public boolean encontrarRW(String palabra) {
         //Palabras reservadas
         String rw[] = {"int", "double", "while", "switch", "float", "false", "true",
-            "boolean"};
+            "boolean", "if", "else", "elif"};
         String palabras;
 
         //Recorrido del arreglo
@@ -47,7 +47,10 @@ public class Analizador {
             ".", "(",
             ")", "{",
             "}", "[",
-            "]"                
+            "]", "&&",
+            "||", "|",
+            "&", " ",
+            "\\n",
         };
         String simbolo;
 
@@ -76,11 +79,15 @@ public class Analizador {
     }
 
     public boolean encontrarIgual(String palabra) {
-        String igual = "=";
-        if (igual.equals(palabra)) {
-            return true;
+        String igual[] = {"=", "=="};
+        for (int i = 0; i < igual.length; i++) {
+            String asig = igual[i];
+            if(asig.equals(palabra)){
+                return true;
+            }
         }
         return false;
+        
     }
 
     public boolean encontrarFin(String palabra) {
@@ -107,13 +114,14 @@ public class Analizador {
         }
         return false;
     }
-    
+    /*
     public boolean cadena_texto(String palabra){
         Pattern expresion = Pattern.compile("([\"]((\\w+((-)?\\d+([.]))?(\\s+)?(\\w+)?)+)[\"])");
         Matcher identificador = expresion.matcher(palabra);
         return identificador.matches();
+          //(["]((\w+((-)?\d+([.]))?(\s+)?(\w+)?)+)["])
     }
-    
+    */
     public boolean caracter(String palabra){
         Pattern expresion = Pattern.compile("(')\\w(')");
         Matcher identificador = expresion.matcher(palabra);
@@ -124,6 +132,18 @@ public class Analizador {
         Matcher identificador = expresion.matcher(palabra);
         return identificador.matches();
         
+        
+    }
+    
+    public boolean condicion(String palabra){
+        String condicion[] = {"if", "else"};
+        for (int i = 0; i < condicion.length; i++) {
+            String condi = condicion[i];
+            if(condi.equals(palabra)){
+                return true;
+            }
+        }
+        return false;
     }
 
     
